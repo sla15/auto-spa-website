@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Check } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Check, CalendarIcon, Clock3 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -13,6 +14,10 @@ import {
   FormLabel,
   FormMessage 
 } from "@/components/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -21,10 +26,23 @@ const bookingFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   contact: z.string().min(5, { message: "Please provide a valid email or phone number." }),
   service: z.string({ required_error: "Please select a service." }),
+  date: z.date({
+    required_error: "Please select a date for your appointment.",
+  }),
+  time: z.string({
+    required_error: "Please select a time for your appointment.",
+  }),
   message: z.string().optional(),
 });
 
 type BookingFormValues = z.infer<typeof bookingFormSchema>;
+
+// Available time slots
+const timeSlots = [
+  "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", 
+  "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", 
+  "04:00 PM", "05:00 PM", "06:00 PM"
+];
 
 const Contact = () => {
   const { toast } = useToast();
@@ -37,6 +55,7 @@ const Contact = () => {
       contact: "",
       service: "",
       message: "",
+      time: "",
     },
   });
 
@@ -61,7 +80,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold mb-4">Contact <span className="text-autospa-yellow">Us</span></h2>
           <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
             Have questions or ready to book an appointment? Reach out to us!
@@ -70,7 +89,7 @@ const Contact = () => {
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Booking form - now first */}
-          <div>
+          <div className="animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
               <h3 className="text-2xl font-bold mb-6">Book Your Service</h3>
               
@@ -127,6 +146,83 @@ const Contact = () => {
                       </FormItem>
                     )}
                   />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="date"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                          <FormLabel>Appointment Date</FormLabel>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <FormControl>
+                                <Button
+                                  variant="outline"
+                                  className={cn(
+                                    "w-full pl-3 text-left font-normal",
+                                    !field.value && "text-muted-foreground"
+                                  )}
+                                >
+                                  {field.value ? (
+                                    format(field.value, "PPP")
+                                  ) : (
+                                    <span>Pick a date</span>
+                                  )}
+                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
+                              </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={field.value}
+                                onSelect={field.onChange}
+                                disabled={(date) => date < new Date()}
+                                initialFocus
+                                className="p-3 pointer-events-auto"
+                              />
+                            </PopoverContent>
+                          </Popover>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="time"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Appointment Time</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select time">
+                                  {field.value ? (
+                                    <div className="flex items-center">
+                                      <Clock3 className="mr-2 h-4 w-4" />
+                                      {field.value}
+                                    </div>
+                                  ) : (
+                                    <span>Select time</span>
+                                  )}
+                                </SelectValue>
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {timeSlots.map((time) => (
+                                <SelectItem key={time} value={time}>
+                                  {time}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   
                   <FormField
                     control={form.control}
@@ -149,7 +245,7 @@ const Contact = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white"
+                    className="w-full bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white transition-colors duration-300"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -169,7 +265,7 @@ const Contact = () => {
           </div>
           
           {/* Get In Touch - now second */}
-          <div>
+          <div className="animate-slide-in-right" style={{ animationDelay: "0.4s" }}>
             <div className="bg-autospa-black text-white p-8 rounded-lg shadow-lg h-full">
               <h3 className="text-2xl font-bold mb-6 text-autospa-yellow">Get In Touch</h3>
               

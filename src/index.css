@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +98,79 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-in-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-in-out forwards;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Mobile-first utilities */
+  .mobile-friendly-padding {
+    @apply px-4 py-3 md:px-6 md:py-4;
+  }
+
+  .mobile-friendly-text {
+    @apply text-base md:text-lg;
+  }
+
+  .mobile-friendly-button {
+    @apply w-full md:w-auto;
   }
 }
