@@ -1,14 +1,62 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Check } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { 
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage 
+} from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+const bookingFormSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  contact: z.string().min(5, { message: "Please provide a valid email or phone number." }),
+  service: z.string({ required_error: "Please select a service." }),
+  message: z.string().optional(),
+});
+
+type BookingFormValues = z.infer<typeof bookingFormSchema>;
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real implementation, this would send the form data to a server
-    console.log("Form submitted");
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<BookingFormValues>({
+    resolver: zodResolver(bookingFormSchema),
+    defaultValues: {
+      name: "",
+      contact: "",
+      service: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (data: BookingFormValues) => {
+    setIsSubmitting(true);
+    
+    // In a real implementation, you would send this data to the owner
+    console.log("Booking form submitted:", data);
+    
+    // Simulate sending the message
+    setTimeout(() => {
+      setIsSubmitting(false);
+      toast({
+        title: "Booking Request Sent",
+        description: "We've received your booking request and will contact you soon.",
+        duration: 5000,
+      });
+      form.reset();
+    }, 1500);
   };
 
   return (
@@ -98,55 +146,101 @@ const Contact = () => {
           
           <div>
             <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold mb-6">Send Us a Message</h3>
+              <h3 className="text-2xl font-bold mb-6">Book Your Service</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Your Name
-                    </label>
-                    <Input id="name" placeholder="John Doe" required />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Your Email
-                    </label>
-                    <Input id="email" type="email" placeholder="john@example.com" required />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium">
-                    Phone Number
-                  </label>
-                  <Input id="phone" placeholder="(555) 123-4567" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium">
-                    Subject
-                  </label>
-                  <Input id="subject" placeholder="Booking inquiry" required />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Your Message
-                  </label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="I would like to book an appointment for..." 
-                    rows={5}
-                    required
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Your Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="John Doe" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <Button type="submit" className="w-full bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white">
-                  Send Message
-                </Button>
-              </form>
+                  
+                  <FormField
+                    control={form.control}
+                    name="contact"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email or Phone Number</FormLabel>
+                        <FormControl>
+                          <Input placeholder="email@example.com or (555) 123-4567" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="service"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Service Required</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a service" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="basic-wash">Basic Wash</SelectItem>
+                            <SelectItem value="premium-wash">Premium Wash</SelectItem>
+                            <SelectItem value="deluxe-detail">Deluxe Detail</SelectItem>
+                            <SelectItem value="interior-clean">Interior Cleaning</SelectItem>
+                            <SelectItem value="exterior-polish">Exterior Polish</SelectItem>
+                            <SelectItem value="full-detail">Full Detail Service</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Additional Details</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Tell us about your vehicle or any special requirements..." 
+                            rows={4}
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="h-5 w-5 border-t-2 border-b-2 border-current rounded-full animate-spin mr-2" />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Check className="mr-2 h-4 w-4" /> Book Now
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Form>
             </div>
           </div>
         </div>
