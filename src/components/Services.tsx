@@ -5,8 +5,8 @@ import { Check } from "lucide-react";
 
 const servicePackages = [
   {
-    name: "Express Wash",
-    price: "$19.99",
+    name: "Basic Pack",
+    price: "D300",
     description: "Quick exterior wash for the busy professional",
     features: [
       "Exterior hand wash",
@@ -18,11 +18,11 @@ const servicePackages = [
     icon: "🚿"
   },
   {
-    name: "Deluxe Wash",
-    price: "$39.99",
+    name: "Premium",
+    price: "D1000",
     description: "Our most popular complete wash package",
     features: [
-      "Everything in Express Wash",
+      "Everything in Basic Pack",
       "Interior vacuuming",
       "Dashboard cleaning",
       "Window cleaning",
@@ -32,11 +32,11 @@ const servicePackages = [
     icon: "✨"
   },
   {
-    name: "Ultimate Detail",
-    price: "$89.99",
+    name: "Full Spa",
+    price: "D2500",
     description: "Comprehensive detailing inside and out",
     features: [
-      "Everything in Deluxe Wash",
+      "Everything in Premium",
       "Clay bar treatment",
       "Wax application",
       "Leather conditioning",
@@ -45,6 +45,22 @@ const servicePackages = [
     ],
     popular: false,
     icon: "💎"
+  },
+  {
+    name: "The Ultimate",
+    price: "D5000",
+    description: "The complete package for showroom quality finish",
+    features: [
+      "Everything in Full Spa",
+      "Paint correction",
+      "Ceramic coating",
+      "Headlight restoration",
+      "Interior deep conditioning",
+      "Undercarriage cleaning",
+      "Premium detailing kit"
+    ],
+    popular: false,
+    icon: "👑"
   }
 ];
 
@@ -59,7 +75,7 @@ const Services = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
           {servicePackages.map((pkg, index) => (
             <Card key={index} className={`overflow-hidden transition-all duration-300 hover:shadow-xl ${pkg.popular ? 'border-autospa-yellow ring-2 ring-autospa-yellow/20 relative' : 'border-gray-200'}`}>
               {pkg.popular && (
@@ -88,6 +104,8 @@ const Services = () => {
               <CardFooter>
                 <Button 
                   className={`w-full ${pkg.popular ? 'bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white' : 'bg-autospa-black text-white hover:bg-autospa-yellow hover:text-autospa-black'}`}
+                  as="a"
+                  href="#contact"
                 >
                   Book Now
                 </Button>

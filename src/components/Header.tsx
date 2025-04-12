@@ -46,10 +46,12 @@ const Header = () => {
           <a href="#gallery" className="text-white hover:text-autospa-yellow font-medium transition-colors">Gallery</a>
           <a href="#testimonials" className="text-white hover:text-autospa-yellow font-medium transition-colors">Testimonials</a>
           <a href="#contact" className="text-white hover:text-autospa-yellow font-medium transition-colors">Contact</a>
-          <Button className="bg-autospa-yellow text-autospa-black hover:bg-white flex items-center gap-2">
-            <PhoneCall size={18} />
-            <span>Book Now</span>
-          </Button>
+          <a href="#contact">
+            <Button className="bg-autospa-yellow text-autospa-black hover:bg-white flex items-center gap-2">
+              <PhoneCall size={18} />
+              <span>Book Now</span>
+            </Button>
+          </a>
         </nav>
         
         {/* Mobile Menu Button */}
@@ -72,10 +74,12 @@ const Header = () => {
             <a href="#gallery" className="text-white hover:text-autospa-yellow font-medium py-2 transition-colors" onClick={toggleMenu}>Gallery</a>
             <a href="#testimonials" className="text-white hover:text-autospa-yellow font-medium py-2 transition-colors" onClick={toggleMenu}>Testimonials</a>
             <a href="#contact" className="text-white hover:text-autospa-yellow font-medium py-2 transition-colors" onClick={toggleMenu}>Contact</a>
-            <Button className="bg-autospa-yellow text-autospa-black hover:bg-white w-full flex items-center justify-center gap-2">
-              <PhoneCall size={18} />
-              <span>Book Now</span>
-            </Button>
+            <a href="#contact" onClick={toggleMenu}>
+              <Button className="bg-autospa-yellow text-autospa-black hover:bg-white w-full flex items-center justify-center gap-2">
+                <PhoneCall size={18} />
+                <span>Book Now</span>
+              </Button>
+            </a>
           </div>
         </div>
       )}

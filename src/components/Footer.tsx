@@ -40,12 +40,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Express Wash</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Deluxe Wash</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Ultimate Detail</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Interior Cleaning</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Ceramic Coating</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Paint Correction</a></li>
+              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Basic Pack - D300</a></li>
+              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Premium - D1000</a></li>
+              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">Full Spa - D2500</a></li>
+              <li><a href="#services" className="text-gray-300 hover:text-autospa-yellow transition-colors">The Ultimate - D5000</a></li>
+              <li><a href="#contact" className="text-gray-300 hover:text-autospa-yellow transition-colors">Book Appointment</a></li>
             </ul>
           </div>
         </div>
