@@ -104,10 +104,9 @@ const Services = () => {
               <CardFooter>
                 <Button 
                   className={`w-full ${pkg.popular ? 'bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white' : 'bg-autospa-black text-white hover:bg-autospa-yellow hover:text-autospa-black'}`}
-                  as="a"
-                  href="#contact"
+                  asChild
                 >
-                  Book Now
+                  <a href="#contact">Book Now</a>
                 </Button>
               </CardFooter>
             </Card>

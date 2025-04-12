@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Clock, Award } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -24,12 +25,14 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="bg-autospa-yellow text-autospa-black hover:bg-white" as="a" href="#contact">
-                Book Appointment
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button size="lg" className="bg-autospa-yellow text-autospa-black hover:bg-white" asChild>
+                <a href="#contact">
+                  Book Appointment
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-autospa-yellow text-white hover:bg-autospa-yellow hover:text-autospa-black" as="a" href="#services">
-                See Services
+              <Button size="lg" variant="outline" className="border-autospa-yellow text-white hover:bg-autospa-yellow hover:text-autospa-black" asChild>
+                <a href="#services">See Services</a>
               </Button>
             </div>
           </div>
