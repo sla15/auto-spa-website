@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				autospa: {
+					black: '#121212',
+					yellow: '#FFD100',
+					gray: '#333333',
+					lightgray: '#F8F8F8'
 				}
 			},
 			borderRadius: {
@@ -84,11 +91,20 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'shine': {
+					'0%': { 
+						backgroundPosition: '200% 200%' 
+					},
+					'100%': { 
+						backgroundPosition: '-200% -200%' 
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'shine': 'shine 3s linear infinite'
 			}
 		}
 	},
