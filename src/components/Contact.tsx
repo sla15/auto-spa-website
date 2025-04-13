@@ -110,13 +110,13 @@ const Contact = () => {
               <h3 className="text-2xl font-bold mb-6 text-yellow-400 text-center">Book Your Service</h3>
               
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 bg-slate-50">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 bg-autospa-gray rounded-lg">
                   <FormField control={form.control} name="name" render={({
                   field
-                }) => <FormItem>
-                        <FormLabel className="bg-gray-950 rounded-lg">Your Name</FormLabel>
+                }) => <FormItem className="bg-autospa-gray">
+                        <FormLabel className="rounded-lg bg-autospa-gray">Your Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" className="bg-autospa-lightgray" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
@@ -126,7 +126,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel>Email or Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="email@example.com or 220 7898219" {...field} />
+                          <Input placeholder="email@example.com or 220 7898219" className="bg-autospa-lightgray" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
@@ -134,7 +134,7 @@ const Contact = () => {
                   <FormField control={form.control} name="service" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel className="bg-gray-950 rounded-lg">Service Required</FormLabel>
+                        <FormLabel className="rounded-lg bg-autospa-gray">Service Required</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -155,7 +155,7 @@ const Contact = () => {
                     <FormField control={form.control} name="date" render={({
                     field
                   }) => <FormItem className="flex flex-col">
-                          <FormLabel className="rounded-lg bg-gray-50">Appointment Date</FormLabel>
+                          <FormLabel className="rounded-lg bg-autospa-gray">Appointment Date</FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
@@ -175,7 +175,7 @@ const Contact = () => {
                     <FormField control={form.control} name="time" render={({
                     field
                   }) => <FormItem>
-                          <FormLabel className="bg-zinc-950">Appointment Time</FormLabel>
+                          <FormLabel className="bg-autospa-gray">Appointment Time</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
@@ -200,9 +200,9 @@ const Contact = () => {
                   <FormField control={form.control} name="message" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel className="bg-zinc-950">Additional Details</FormLabel>
+                        <FormLabel className="bg-autospa-gray">Additional Details</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Tell us about your vehicle or any special requirements..." rows={4} className="resize-none" {...field} />
+                          <Textarea placeholder="Tell us about your vehicle or any special requirements..." rows={4} className="resize-none bg-autospa-lightgray" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
