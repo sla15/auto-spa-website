@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 const bookingFormSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters."
@@ -33,17 +31,16 @@ const bookingFormSchema = z.object({
   }),
   message: z.string().optional()
 });
-
 type BookingFormValues = z.infer<typeof bookingFormSchema>;
 
 // Available time slots
 const timeSlots = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM"];
-
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingLimitReached, setBookingLimitReached] = useState(false);
-
   const form = useForm<BookingFormValues>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
@@ -53,7 +50,6 @@ const Contact = () => {
       message: ""
     }
   });
-
   const onSubmit = async (data: BookingFormValues) => {
     setIsSubmitting(true);
     try {
@@ -68,13 +64,12 @@ const Contact = () => {
       formData.append('date', formattedDate);
       formData.append('time', data.time);
       formData.append('message', data.message || 'No additional details provided');
-      
+
       // Using formsubmit.co service with the updated email address for testing
       const response = await fetch('https://formsubmit.co/sladibba15@gmail.com', {
         method: 'POST',
         body: formData
       });
-      
       if (response.ok) {
         toast({
           title: "Booking Request Sent",
@@ -97,12 +92,10 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <section id="contact" className="py-20">
+  return <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4">Contact <span className="text-autospa-yellow">Us</span></h2>
+          <h2 className="text-4xl font-bold mb-4 text-autospa-yellow">Contact <span className="text-autospa-yellow">Us</span></h2>
           <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
             Have questions or ready to book an appointment? Reach out to us!
           </p>
@@ -110,45 +103,37 @@ const Contact = () => {
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Booking form - now first */}
-          <div className="animate-slide-in-right" style={{animationDelay: "0.2s"}}>
+          <div className="animate-slide-in-right" style={{
+          animationDelay: "0.2s"
+        }}>
             <div className="p-8 rounded-lg shadow-lg border border-gray-200 bg-autospa-black">
               <h3 className="text-2xl font-bold mb-6 text-autospa-yellow text-center">Book Your Service</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="name" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-white">Your Name</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" className="bg-white text-autospa-black" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                      </FormItem>} />
                   
-                  <FormField
-                    control={form.control}
-                    name="contact"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="contact" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-white">Email or Phone Number</FormLabel>
                         <FormControl>
                           <Input placeholder="email@example.com or 220 7898219" className="bg-white text-autospa-black" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                      </FormItem>} />
                   
-                  <FormField
-                    control={form.control}
-                    name="service"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="service" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-white">Service Required</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
@@ -164,16 +149,12 @@ const Contact = () => {
                           </SelectContent>
                         </Select>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                      </FormItem>} />
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="date"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-col">
+                    <FormField control={form.control} name="date" render={({
+                    field
+                  }) => <FormItem className="flex flex-col">
                           <FormLabel className="text-white">Appointment Date</FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
@@ -185,80 +166,54 @@ const Contact = () => {
                               </FormControl>
                             </PopoverTrigger>
                             <PopoverContent className="w-auto p-0" align="start">
-                              <Calendar 
-                                mode="single" 
-                                selected={field.value} 
-                                onSelect={field.onChange} 
-                                disabled={date => date < new Date()} 
-                                initialFocus 
-                              />
+                              <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={date => date < new Date()} initialFocus />
                             </PopoverContent>
                           </Popover>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
 
-                    <FormField
-                      control={form.control}
-                      name="time"
-                      render={({ field }) => (
-                        <FormItem>
+                    <FormField control={form.control} name="time" render={({
+                    field
+                  }) => <FormItem>
                           <FormLabel className="text-white">Appointment Time</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger className="bg-white text-autospa-black">
                                 <SelectValue placeholder="Select time">
-                                  {field.value ? (
-                                    <div className="flex items-center">
+                                  {field.value ? <div className="flex items-center">
                                       <Clock3 className="mr-2 h-4 w-4" />
                                       {field.value}
-                                    </div>
-                                  ) : (
-                                    <span>Select time</span>
-                                  )}
+                                    </div> : <span>Select time</span>}
                                 </SelectValue>
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              {timeSlots.map(time => (
-                                <SelectItem key={time} value={time}>
+                              {timeSlots.map(time => <SelectItem key={time} value={time}>
                                   {time}
-                                </SelectItem>
-                              ))}
+                                </SelectItem>)}
                             </SelectContent>
                           </Select>
                           <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        </FormItem>} />
                   </div>
                   
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="message" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel className="text-white">Additional Details</FormLabel>
                         <FormControl>
                           <Textarea placeholder="Tell us about your vehicle or any special requirements..." rows={4} className="resize-none bg-white text-autospa-black" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                      </FormItem>} />
                   
                   <Button type="submit" className="w-full bg-autospa-yellow text-autospa-black hover:bg-white hover:text-autospa-black transition-colors duration-300" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      <>
+                    {isSubmitting ? <>
                         <div className="h-5 w-5 border-t-2 border-b-2 border-current rounded-full animate-spin mr-2" />
                         Processing...
-                      </>
-                    ) : (
-                      <>
+                      </> : <>
                         <Check className="mr-2 h-4 w-4" /> Book Now
-                      </>
-                    )}
+                      </>}
                   </Button>
                 </form>
               </Form>
@@ -266,7 +221,9 @@ const Contact = () => {
           </div>
           
           {/* Get In Touch - now second */}
-          <div className="animate-slide-in-right" style={{animationDelay: "0.4s"}}>
+          <div className="animate-slide-in-right" style={{
+          animationDelay: "0.4s"
+        }}>
             <div className="bg-autospa-black text-white p-8 rounded-lg shadow-lg h-full">
               <h3 className="text-2xl font-bold mb-6 text-autospa-yellow">Get In Touch</h3>
               
@@ -331,8 +288,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;

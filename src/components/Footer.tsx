@@ -1,6 +1,4 @@
-
 import { ArrowUp } from "lucide-react";
-
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -8,18 +6,14 @@ const Footer = () => {
       behavior: "smooth"
     });
   };
-
-  return (
-    <footer className="bg-autospa-black text-white">
+  return <footer className="bg-autospa-black text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-4">
               <span className="text-autospa-yellow">The</span> Ultimate <span className="text-autospa-yellow">Auto Spa</span>
             </h3>
-            <p className="text-gray-300 mb-4">
-              Providing premium car wash and detailing services since 2013. Our mission is to deliver the highest quality car care with unmatched customer service.
-            </p>
+            <p className="text-gray-300 mb-4">Providing premium car wash and detailing services since 2013. Our mission is to deliver the highest quality car care with unmatched customer service. </p>
             <p className="text-gray-300">
               © {new Date().getFullYear()} The Ultimate Auto Spa. All rights reserved.
             </p>
@@ -66,17 +60,11 @@ const Footer = () => {
               </svg>
             </a>
           </div>
-          <button 
-            onClick={scrollToTop}
-            className="bg-autospa-yellow text-autospa-black p-3 rounded-full hover:bg-white transition-colors"
-            aria-label="Scroll to top"
-          >
+          <button onClick={scrollToTop} className="bg-autospa-yellow text-autospa-black p-3 rounded-full hover:bg-white transition-colors" aria-label="Scroll to top">
             <ArrowUp size={20} />
           </button>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
