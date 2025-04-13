@@ -55,9 +55,11 @@ const Header = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center animate-fade-in">
           <a href="#" className="flex items-center">
-            <span className="text-2xl font-bold text-white">
-              <span className="text-autospa-yellow">The</span> Ultimate <span className="text-autospa-yellow">Auto Spa</span>
-            </span>
+            <img 
+              src="/lovable-uploads/b9b75ad0-27c5-41e7-812f-eec901c4f6f2.png" 
+              alt="The Ultimate Auto Spa Logo" 
+              className="h-12 mr-2"
+            />
           </a>
         </div>
         

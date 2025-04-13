@@ -59,22 +59,49 @@ const Contact = () => {
     },
   });
 
-  const onSubmit = (data: BookingFormValues) => {
+  const onSubmit = async (data: BookingFormValues) => {
     setIsSubmitting(true);
     
-    // In a real implementation, you would send this data to the owner
-    console.log("Booking form submitted:", data);
-    
-    // Simulate sending the message
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Format date for better readability
+      const formattedDate = format(data.date, 'PPP');
+      
+      // Send data to FormSubmit service (serverless email solution)
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('contact', data.contact);
+      formData.append('service', data.service);
+      formData.append('date', formattedDate);
+      formData.append('time', data.time);
+      formData.append('message', data.message || 'No additional details provided');
+      
+      // Using formsubmit.co service - change the email to your own
+      const response = await fetch('https://formsubmit.co/ultimateautospa.com', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Booking Request Sent",
+          description: "We've received your booking request and will contact you soon.",
+          duration: 5000,
+        });
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       toast({
-        title: "Booking Request Sent",
-        description: "We've received your booking request and will contact you soon.",
+        title: "Submission Error",
+        description: "There was a problem sending your request. Please try again later or contact us directly.",
+        variant: "destructive",
         duration: 5000,
       });
-      form.reset();
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
