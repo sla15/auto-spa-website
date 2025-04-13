@@ -3,28 +3,28 @@ import React from 'react';
 
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1605072010036-32a7e31993ed",
-    alt: "Exterior Detailing"
+    src: "/lovable-uploads/3a12aebe-f22c-47dc-9c6c-cc74a9d5d80b.png",
+    alt: "White Luxury Car"
   },
   {
-    src: "https://images.unsplash.com/photo-1552743310-1a4cafa3a0c5",
-    alt: "Interior Detailing"
+    src: "/lovable-uploads/dc8ff153-9b84-4f0f-9688-0d5cc5866c99.png",
+    alt: "Mercedes Interior"
   },
   {
-    src: "https://images.unsplash.com/photo-1563339019-fed6f8f9fdb9",
-    alt: "Wheel Cleaning"
+    src: "/lovable-uploads/59d8bfe7-7810-45fb-abc9-90d9eda24ceb.png",
+    alt: "Mercedes Interior with Red Detail"
   },
   {
-    src: "https://images.unsplash.com/photo-1514022364692-218d682a85fd",
-    alt: "Paint Protection"
+    src: "/lovable-uploads/a17950f1-43df-41ef-be48-5806f94bf5bc.png",
+    alt: "White Mercedes Front"
   },
   {
-    src: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f",
-    alt: "Engine Cleaning"
+    src: "/lovable-uploads/8de3cef1-778a-418b-82ba-96e81a839902.png",
+    alt: "Red Interior Detail"
   },
   {
-    src: "https://images.unsplash.com/photo-1625595234473-c00c8abbf4e1",
-    alt: "Car Wash"
+    src: "/lovable-uploads/9dd34679-11ab-4d7c-af08-f9933eb0ad00.png",
+    alt: "Brown Volvo Front"
   }
 ];
 
@@ -52,6 +52,7 @@ const Gallery = () => {
                   src={image.src} 
                   alt={image.alt} 
                   className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-20">
                   <h3 className="font-semibold">{image.alt}</h3>

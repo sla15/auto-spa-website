@@ -31,9 +31,6 @@ const bookingFormSchema = z.object({
   time: z.string({
     required_error: "Please select a time for your appointment."
   }),
-  numberOfCars: z.coerce.number()
-    .min(1, { message: "At least 1 car is required." })
-    .max(12, { message: "Maximum 12 cars per booking." }),
   message: z.string().optional()
 });
 
@@ -53,7 +50,6 @@ const Contact = () => {
       name: "",
       contact: "",
       service: "",
-      numberOfCars: 1,
       message: ""
     }
   });
@@ -71,11 +67,10 @@ const Contact = () => {
       formData.append('service', data.service);
       formData.append('date', formattedDate);
       formData.append('time', data.time);
-      formData.append('numberOfCars', data.numberOfCars.toString());
       formData.append('message', data.message || 'No additional details provided');
-
-      // Using formsubmit.co service
-      const response = await fetch('https://formsubmit.co/ultimateautospa.com', {
+      
+      // Using formsubmit.co service with the updated email address for testing
+      const response = await fetch('https://formsubmit.co/sladibba15@gmail.com', {
         method: 'POST',
         body: formData
       });
@@ -196,7 +191,6 @@ const Contact = () => {
                                 onSelect={field.onChange} 
                                 disabled={date => date < new Date()} 
                                 initialFocus 
-                                className="p-3 pointer-events-auto" 
                               />
                             </PopoverContent>
                           </Popover>
@@ -239,26 +233,6 @@ const Contact = () => {
                       )}
                     />
                   </div>
-
-                  <FormField
-                    control={form.control}
-                    name="numberOfCars"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Number of Cars</FormLabel>
-                        <FormControl>
-                          <Input 
-                            type="number" 
-                            min="1" 
-                            max="12" 
-                            className="bg-white text-autospa-black" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                   
                   <FormField
                     control={form.control}

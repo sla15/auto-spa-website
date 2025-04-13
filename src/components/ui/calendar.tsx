@@ -8,12 +8,30 @@ import { buttonVariants } from "@/components/ui/button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+// Example of unavailable dates - in a real app this would come from an API
+const getUnavailableDays = () => {
+  const today = new Date();
+  const unavailableDays = [];
+  
+  // Mark some random days as unavailable for demo purposes
+  for (let i = 1; i <= 10; i++) {
+    const randomDay = new Date(today);
+    randomDay.setDate(today.getDate() + Math.floor(Math.random() * 30)); // Random day within next 30 days
+    unavailableDays.push(randomDay);
+  }
+  
+  return unavailableDays;
+};
+
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  // This would typically come from an API or state
+  const unavailableDays = React.useMemo(() => getUnavailableDays(), []);
+  
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -46,11 +64,26 @@ function Calendar({
         day_today: "bg-accent text-accent-foreground",
         day_outside:
           "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
-        day_disabled: "text-muted-foreground opacity-50",
+        day_disabled: "text-muted-foreground opacity-50 bg-gray-100", // Gray background for unavailable days
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
         ...classNames,
+      }}
+      modifiersStyles={{
+        today: {
+          backgroundColor: '#FEF7CD', // Soft yellow for available days
+          color: '#222222',
+          fontWeight: 'bold'
+        },
+        disabled: {
+          backgroundColor: '#8E9196', // Gray for unavailable days
+          color: '#ffffff',
+          opacity: 0.5
+        }
+      }}
+      modifiers={{
+        disabled: unavailableDays
       }}
       components={{
         IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
