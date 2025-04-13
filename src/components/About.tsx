@@ -8,11 +8,18 @@ const About = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1636358783550-29f824c320cd" 
-              alt="About The Ultimate Auto Spa" 
-              className="rounded-lg shadow-xl object-cover w-full h-[500px]"
-            />
+            <div className="rounded-lg shadow-xl overflow-hidden w-full h-[500px]">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="object-cover w-full h-full"
+              >
+                <source src="https://player.vimeo.com/external/373392292.sd.mp4?s=cfebe916ddc9da8fd6a5e016cd8b097d0c57f72a" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div className="absolute -bottom-8 -right-8 bg-autospa-yellow p-6 rounded-lg shadow-lg hidden md:block">
               <p className="text-autospa-black font-bold text-xl">10+ Years of Excellence</p>
             </div>
