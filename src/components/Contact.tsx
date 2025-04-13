@@ -106,15 +106,15 @@ const Contact = () => {
           <div className="animate-slide-in-right" style={{
           animationDelay: "0.2s"
         }}>
-            <div className="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+            <div className="p-8 rounded-lg shadow-lg border border-gray-200 bg-autospa-black">
               <h3 className="text-2xl font-bold mb-6 text-yellow-400 text-center">Book Your Service</h3>
               
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 bg-slate-50">
                   <FormField control={form.control} name="name" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel>Your Name</FormLabel>
+                        <FormLabel className="bg-gray-950 rounded-lg">Your Name</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" {...field} />
                         </FormControl>
@@ -134,7 +134,7 @@ const Contact = () => {
                   <FormField control={form.control} name="service" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel>Service Required</FormLabel>
+                        <FormLabel className="bg-gray-950 rounded-lg">Service Required</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -155,7 +155,7 @@ const Contact = () => {
                     <FormField control={form.control} name="date" render={({
                     field
                   }) => <FormItem className="flex flex-col">
-                          <FormLabel>Appointment Date</FormLabel>
+                          <FormLabel className="rounded-lg bg-gray-50">Appointment Date</FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
@@ -175,7 +175,7 @@ const Contact = () => {
                     <FormField control={form.control} name="time" render={({
                     field
                   }) => <FormItem>
-                          <FormLabel>Appointment Time</FormLabel>
+                          <FormLabel className="bg-zinc-950">Appointment Time</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
@@ -200,7 +200,7 @@ const Contact = () => {
                   <FormField control={form.control} name="message" render={({
                   field
                 }) => <FormItem>
-                        <FormLabel>Additional Details</FormLabel>
+                        <FormLabel className="bg-zinc-950">Additional Details</FormLabel>
                         <FormControl>
                           <Textarea placeholder="Tell us about your vehicle or any special requirements..." rows={4} className="resize-none" {...field} />
                         </FormControl>
