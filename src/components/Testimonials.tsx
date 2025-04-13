@@ -3,20 +3,20 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Michael Johnson",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Omar Sowe",
+    image: "https://randomuser.me/api/portraits/men/75.jpg",
     stars: 5,
     testimonial: "The Ultimate Auto Spa transformed my car! It looks better than when I first bought it. The team is professional, thorough, and genuinely cares about their work."
   },
   {
-    name: "Sarah Williams",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Ebou Badjie",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
     stars: 5,
     testimonial: "I've been to many car washes over the years, but none compare to The Ultimate Auto Spa. Their attention to detail is unmatched and the customer service is exceptional."
   },
   {
-    name: "David Thompson",
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
+    name: "Seedy Suso",
+    image: "https://randomuser.me/api/portraits/men/79.jpg",
     stars: 5,
     testimonial: "I was amazed at how they restored my 10-year-old car's interior. It looks and smells brand new! Highly recommend their Ultimate Detail package."
   },
