@@ -95,7 +95,7 @@ const Contact = () => {
   return <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4">Contact <span className="text-autospa-yellow">Us</span></h2>
+          <h2 className="font-bold mb-4 text-amber-400 text-4xl">Contact <span className="text-autospa-yellow">Us</span></h2>
           <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
             Have questions or ready to book an appointment? Reach out to us!
           </p>
