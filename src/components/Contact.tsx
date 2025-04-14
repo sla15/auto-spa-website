@@ -3,11 +3,6 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
-  // Redirect to Tally form
-  const handleBooking = () => {
-    window.location.href = "https://tally.so/r/3jEG1J";
-  };
-
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
@@ -19,23 +14,17 @@ const Contact = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Booking form */}
+          {/* Embedded Tally form */}
           <div className="animate-slide-in-right" style={{
             animationDelay: "0.2s"
           }}>
-            <div className="p-8 rounded-lg shadow-lg border border-gray-200 bg-autospa-black">
+            <div className="p-8 rounded-lg shadow-lg border border-gray-200 bg-autospa-black h-full">
               <h3 className="text-2xl font-bold mb-6 text-autospa-yellow text-center">Book Your Service</h3>
-              
-              <p className="text-white mb-6 text-center">
-                Use our online booking form to schedule your appointment at a time that works for you.
-              </p>
-              
-              <Button 
-                className="w-full bg-autospa-yellow text-autospa-black hover:bg-white hover:text-autospa-black transition-colors duration-300"
-                onClick={handleBooking}
-              >
-                Open Booking Form
-              </Button>
+              <iframe
+                src="https://tally.so/embed/3jEG1J?alignLeft=1&hideTitle=1&transparentBackground=1"
+                className="w-full h-[500px] border-0"
+                title="Book Your Service"
+              />
             </div>
           </div>
           
