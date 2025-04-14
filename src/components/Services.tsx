@@ -136,23 +136,23 @@ const Services = () => {
                 ref={el => cardsRef.current[index] = el}
                 className="perspective-1000"
                 onMouseEnter={() => {
-                  if (cardsRef.current[index]) {
-                    cardsRef.current[index]?.classList.add('card-hovered');
+                  const card = cardsRef.current[index];
+                  if (card) {
+                    card.classList.add('card-hovered');
                   }
                 }}
                 onMouseLeave={() => {
-                  if (cardsRef.current[index]) {
-                    cardsRef.current[index]?.classList.remove('card-hovered');
-                    cardsRef.current[index]?.style.transform = '';
+                  const card = cardsRef.current[index];
+                  if (card) {
+                    card.classList.remove('card-hovered');
+                    card.style.transform = '';
                   }
                 }}
                 onMouseMove={() => {
-                  if (cardsRef.current[index]) {
-                    const card = cardsRef.current[index];
-                    if (card) {
-                      const { x, y } = calculateRotation(card);
-                      card.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
-                    }
+                  const card = cardsRef.current[index];
+                  if (card) {
+                    const { x, y } = calculateRotation(card);
+                    card.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
                   }
                 }}
               >
