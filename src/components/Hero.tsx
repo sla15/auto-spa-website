@@ -1,12 +1,14 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Clock, Award } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useEffect, useState } from "react";
+import { TypeAnimation } from 'react-type-animation';
+
 const Hero = () => {
   const isMobile = useIsMobile();
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Track scroll position for parallax effect
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
@@ -19,22 +21,38 @@ const Hero = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  return <section className="relative min-h-screen bg-gradient-to-b from-autospa-black to-autospa-gray flex items-center pt-16">
+
+  return (
+    <section className="relative min-h-screen bg-gradient-to-b from-autospa-black to-autospa-gray flex items-center pt-16">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-autospa-black/60 z-10"></div>
-        <div className="absolute inset-0 bg-cover bg-center z-0" style={{
-        backgroundImage: 'url("/lovable-uploads/17f2a38c-b30a-4476-aff7-c56fc44de7cc.png")',
-        backgroundPosition: 'center 40%',
-        transform: `translateY(${scrollPosition * 0.2}px)`,
-        transition: 'transform 0.1s ease-out'
-      }}></div>
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0" 
+          style={{
+            backgroundImage: 'url("/lovable-uploads/17f2a38c-b30a-4476-aff7-c56fc44de7cc.png")',
+            backgroundPosition: 'center 40%',
+            transform: `translateY(${scrollPosition * 0.2}px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        />
       </div>
       
       <div className="container mx-auto px-4 z-20">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-white space-y-6 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              The <span className="text-autospa-yellow">Ultimate</span> Care For Your Vehicle
+              <TypeAnimation
+                sequence={[
+                  'The Ultimate Care',
+                  1000,
+                  'The Ultimate Care For Your Vehicle',
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={0}
+                cursor={false}
+              />
             </h1>
             <p className="text-xl md:text-2xl opacity-90">Let us give your vehicle the treatment it deserve!🚗🚖💛</p>
             
@@ -101,6 +119,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
