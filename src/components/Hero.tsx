@@ -2,19 +2,36 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Droplets, Clock, Award } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   const isMobile = useIsMobile();
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // Track scroll position for parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-autospa-black to-autospa-gray flex items-center pt-16">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-autospa-black/80 z-10"></div>
+        <div className="absolute inset-0 bg-autospa-black/60 z-10"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ 
             backgroundImage: 'url("/lovable-uploads/17f2a38c-b30a-4476-aff7-c56fc44de7cc.png")',
-            backgroundPosition: 'center 40%' 
+            backgroundPosition: 'center 40%',
+            transform: `translateY(${scrollPosition * 0.2}px)`,
+            transition: 'transform 0.1s ease-out'
           }}
         ></div>
       </div>

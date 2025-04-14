@@ -173,4 +173,69 @@
   .mobile-friendly-button {
     @apply w-full md:w-auto;
   }
+  
+  /* Parallax & Card effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .card-hovered {
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  
+  .premium-card {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .premium-card:hover {
+    box-shadow: 0 0 30px rgba(255, 209, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 209, 0, 0.5);
+  }
+  
+  .fullspa-card {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .fullspa-card:hover {
+    box-shadow: 0 0 30px rgba(203, 213, 255, 0.7);
+    background: 
+      linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(255, 255, 255, 0.05) 100%
+      );
+    backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .fullspa-card:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FFD100, #FFF, #00C9FF, #92FE9D);
+    z-index: -1;
+    background-size: 400% 400%;
+    animation: shine 3s linear infinite;
+    border-radius: 0.5rem;
+  }
+  
+  @keyframes shine {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }

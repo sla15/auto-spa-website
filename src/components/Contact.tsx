@@ -18,12 +18,15 @@ const Contact = () => {
           <div className="animate-slide-in-right" style={{
             animationDelay: "0.2s"
           }}>
-            <div className="p-8 rounded-lg shadow-lg border border-gray-200 bg-autospa-black h-full">
-              <h3 className="text-2xl font-bold mb-6 text-autospa-yellow text-center">Book Your Service</h3>
+            <div className="rounded-lg shadow-lg border border-gray-200 bg-autospa-black h-full">
+              <h3 className="text-2xl font-bold pt-8 px-8 text-autospa-yellow text-center">Book Your Service</h3>
               <iframe
                 src="https://tally.so/embed/3jEG1J?alignLeft=1&hideTitle=1&transparentBackground=1"
-                className="w-full h-[500px] border-0"
+                className="w-full h-[600px] border-0"
                 title="Book Your Service"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
               />
             </div>
           </div>
