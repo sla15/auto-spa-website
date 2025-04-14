@@ -1,7 +1,8 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, PhoneCall } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const servicePackages = [
   {
@@ -15,7 +16,8 @@ const servicePackages = [
       "Hand drying"
     ],
     popular: false,
-    icon: "🚿"
+    icon: "🚿",
+    id: "basic-wash"
   },
   {
     name: "Premium",
@@ -29,7 +31,8 @@ const servicePackages = [
       "Air freshener"
     ],
     popular: true,
-    icon: "✨"
+    icon: "✨",
+    id: "premium-wash"
   },
   {
     name: "Full Spa",
@@ -44,7 +47,8 @@ const servicePackages = [
       "Engine bay cleaning"
     ],
     popular: false,
-    icon: "💎"
+    icon: "💎",
+    id: "full-spa"
   },
   {
     name: "The Ultimate",
@@ -60,11 +64,18 @@ const servicePackages = [
       "Premium detailing kit"
     ],
     popular: false,
-    icon: "👑"
+    icon: "👑",
+    id: "ultimate"
   }
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
+
+  const handleBooking = (serviceId: string) => {
+    window.location.href = `https://tally.so/r/3jEG1J?service=${serviceId}`;
+  };
+
   return (
     <section id="services" className="py-20 bg-autospa-lightgray">
       <div className="container mx-auto px-4">
@@ -106,12 +117,23 @@ const Services = () => {
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button 
-                  className={`w-full ${pkg.popular ? 'bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white' : 'bg-autospa-black text-white hover:bg-autospa-yellow hover:text-autospa-black'} transition-colors duration-300`}
-                  asChild
-                >
-                  <a href="#contact">Book Now</a>
-                </Button>
+                {index === 0 ? (
+                  <Button 
+                    className="w-full bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white transition-colors duration-300"
+                    asChild
+                  >
+                    <a href="tel:2207898519" className="flex items-center justify-center">
+                      <PhoneCall className="mr-2 h-4 w-4" /> Call Now
+                    </a>
+                  </Button>
+                ) : (
+                  <Button 
+                    className={`w-full ${pkg.popular ? 'bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white' : 'bg-autospa-black text-white hover:bg-autospa-yellow hover:text-autospa-black'} transition-colors duration-300`}
+                    onClick={() => handleBooking(pkg.id)}
+                  >
+                    Book Now
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           ))}
