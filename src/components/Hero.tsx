@@ -9,10 +9,13 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-autospa-black to-autospa-gray flex items-center pt-16">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-autospa-black/70 z-10"></div>
+        <div className="absolute inset-0 bg-autospa-black/80 z-10"></div>
         <div 
-          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552148869-509f1cf15a6f?q=80')] bg-cover bg-center z-0"
-          style={{ backgroundPosition: 'center 40%' }}
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ 
+            backgroundImage: 'url("/lovable-uploads/17f2a38c-b30a-4476-aff7-c56fc44de7cc.png")',
+            backgroundPosition: 'center 40%' 
+          }}
         ></div>
       </div>
       
