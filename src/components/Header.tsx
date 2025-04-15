@@ -53,11 +53,10 @@ const Header = () => {
         <div className="flex items-center animate-fade-in">
           <a href="#" className="flex items-center">
             <img 
-              src="/lovable-uploads/aaad4412-17e4-44af-ab89-28d8c648cb87.png" 
+              src="/lovable-uploads/8bd82a0b-ae34-4608-ab2a-efc3d0e32b18.png" 
               alt="The Ultimate Auto Spa Logo" 
-              className="h-12 mr-2 rounded-full"
+              className="h-12 mr-2"
             />
-            <span className="text-white text-xl font-bold">The <span className="text-autospa-yellow">Ultimate</span> Auto Spa</span>
           </a>
         </div>
         

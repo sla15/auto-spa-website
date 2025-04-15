@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, PhoneCall } from "lucide-react";
@@ -70,11 +69,9 @@ const servicePackages = [
 ];
 
 const Services = () => {
-  // Mouse position state for card hover effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Handle scroll to booking form
   const handleBooking = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -82,7 +79,25 @@ const Services = () => {
     }
   };
 
-  // Update mouse position for card hover effect
+  const handleServiceSelection = (serviceId: string) => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      const iframe = document.getElementById('JotFormIFrame-251028955816059') as HTMLIFrameElement;
+      if (iframe) {
+        iframe.onload = () => {
+          setTimeout(() => {
+            iframe.contentWindow?.postMessage({
+              action: 'setDropdownValue',
+              field: 'serviceSelection',
+              value: serviceId
+            }, '*');
+          }, 1000);
+        };
+      }
+    }
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -92,7 +107,6 @@ const Services = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Calculate rotation based on mouse position
   const calculateRotation = (card: HTMLDivElement) => {
     if (!card) return { x: 0, y: 0 };
     
@@ -100,11 +114,9 @@ const Services = () => {
     const cardCenterX = rect.left + rect.width / 2;
     const cardCenterY = rect.top + rect.height / 2;
     
-    // Calculate distance from mouse to center of card
     const distanceX = mousePosition.x - cardCenterX;
     const distanceY = mousePosition.y - cardCenterY;
     
-    // Limit the rotation to a small amount
     const maxRotation = 5;
     const rotateY = Math.min(Math.max((distanceX / (rect.width / 2)) * maxRotation, -maxRotation), maxRotation);
     const rotateX = Math.min(Math.max(-(distanceY / (rect.height / 2)) * maxRotation, -maxRotation), maxRotation);
@@ -131,7 +143,9 @@ const Services = () => {
               <div 
                 key={index}
                 ref={el => cardsRef.current[index] = el}
-                className="perspective-1000"
+                className={`perspective-1000 ${
+                  (isPremium || isFullSpa) ? '' : 'animate-scale-in'
+                }`}
                 onMouseEnter={() => {
                   const card = cardsRef.current[index];
                   if (card) {
@@ -157,10 +171,6 @@ const Services = () => {
                 <Card 
                   className={`overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 ${
                     pkg.popular ? 'border-autospa-yellow ring-2 ring-autospa-yellow/20 relative' : 'border-gray-200'
-                  } animate-scale-in ${
-                    isPremium ? 'premium-card' : ''
-                  } ${
-                    isFullSpa ? 'fullspa-card' : ''
                   }`}
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
@@ -200,7 +210,7 @@ const Services = () => {
                     ) : (
                       <Button 
                         className={`w-full ${pkg.popular ? 'bg-autospa-yellow text-autospa-black hover:bg-autospa-black hover:text-white' : 'bg-autospa-black text-white hover:bg-autospa-yellow hover:text-autospa-black'} transition-colors duration-300`}
-                        onClick={handleBooking}
+                        onClick={() => handleServiceSelection(pkg.id)}
                       >
                         Book Now
                       </Button>
