@@ -21,7 +21,7 @@ const galleryImages = [{
   alt: "Brown Volvo Front"
 }];
 const Gallery = () => {
-  return <section id="gallery" className="py-20">
+  return <section id="gallery" className="py-20 bg-autospa-black">
       <div className="container mx-auto px-4 bg-autospa-black">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 text-autospa-yellow">Our <span className="text-autospa-yellow">Work</span></h2>
