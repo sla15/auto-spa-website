@@ -35,7 +35,7 @@ const Testimonials = () => {
               <div className="flex items-center gap-4 mb-4">
                 <img src={testimonial.image} alt={testimonial.name} className="w-14 h-14 rounded-full object-cover" />
                 <div>
-                  <h3 className="font-bold">{testimonial.name}</h3>
+                  <h3 className="font-bold text-autospa-black">{testimonial.name}</h3>
                   <div className="flex items-center">
                     {[...Array(5)].map((_, i) => <Star key={i} size={16} className={i < testimonial.stars ? "fill-autospa-yellow text-autospa-yellow" : "text-gray-300"} />)}
                   </div>
