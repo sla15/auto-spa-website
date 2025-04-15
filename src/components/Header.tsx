@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, PhoneCall } from "lucide-react";
@@ -13,13 +12,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Auto-hide header on scroll down, show on scroll up
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > 100) {
         setIsScrolled(true);
         
-        // Hide header when scrolling down, show when scrolling up
         if (currentScrollY > lastScrollY) {
           if (showHeader) setShowHeader(false);
         } else {
@@ -56,14 +53,14 @@ const Header = () => {
         <div className="flex items-center animate-fade-in">
           <a href="#" className="flex items-center">
             <img 
-              src="/lovable-uploads/b9b75ad0-27c5-41e7-812f-eec901c4f6f2.png" 
+              src="/lovable-uploads/aaad4412-17e4-44af-ab89-28d8c648cb87.png" 
               alt="The Ultimate Auto Spa Logo" 
-              className="h-12 mr-2"
+              className="h-12 mr-2 rounded-full"
             />
+            <span className="text-white text-xl font-bold">The <span className="text-autospa-yellow">Ultimate</span> Auto Spa</span>
           </a>
         </div>
         
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {["Home", "Services", "About", "Gallery", "Testimonials", "Contact"].map((item, index) => (
             <a 
@@ -87,7 +84,6 @@ const Header = () => {
           </a>
         </nav>
         
-        {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-white p-2 animate-fade-in"
           onClick={toggleMenu}
@@ -97,7 +93,6 @@ const Header = () => {
         </button>
       </div>
       
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden bg-autospa-black/95 absolute top-full left-0 w-full py-4 shadow-lg backdrop-blur-sm animate-fade-in">
           <div className="container mx-auto px-4 flex flex-col space-y-4">

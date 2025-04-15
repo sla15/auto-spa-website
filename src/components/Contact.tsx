@@ -1,3 +1,4 @@
+
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
@@ -5,25 +6,27 @@ const Contact = () => {
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4 text-autospa-yellow">Contact <span className="text-autospa-yellow">Us</span></h2>
+          <h2 className="text-4xl font-bold mb-4">Contact <span className="text-autospa-yellow">Us</span></h2>
           <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
             Have questions or ready to book an appointment? Reach out to us!
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Embedded JotForm */}
-          <div className="animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
+          {/* Embedded JotForm with better responsive handling */}
+          <div className="animate-slide-in-right w-full h-[600px] md:h-[800px]" style={{ animationDelay: "0.2s" }}>
             <iframe 
               id="JotFormIFrame-251028955816059" 
-              title="Ultimate Auto Spa" 
-              onLoad={() => window.parent.scrollTo(0,0)}
+              title="Ultimate Auto Spa Booking" 
               allowTransparency={true}
               allow="geolocation; microphone; camera; fullscreen" 
-              src="https://form.jotform.com/251028955816059" 
-              frameBorder="0" 
-              className="w-full h-[539px] md:h-[600px] border-0"
-              scrolling="no"
+              src="https://form.jotform.com/251028955816059"
+              style={{
+                minWidth: '100%',
+                maxWidth: '100%',
+                height: '100%',
+                border: 'none'
+              }}
             />
           </div>
           
@@ -95,7 +98,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js' defer></script>
     </section>
   );
 };
