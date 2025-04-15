@@ -25,7 +25,7 @@ const Gallery = () => {
       <div className="container mx-auto px-4 bg-autospa-black">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 text-autospa-yellow">Our <span className="text-autospa-yellow">Work</span></h2>
-          <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
+          <p className="text-xl max-w-2xl mx-auto text-autospa-lightgray">
             See the difference our detailing services make with these transformations
           </p>
         </div>
@@ -45,7 +45,7 @@ const Gallery = () => {
         </div>
         
         {/* Social Media Section */}
-        <div className="mt-12 text-center bg-autospa-gray rounded-lg">
+        <div className="mt-12 text-center rounded-lg bg-autospa-black">
           <h3 className="text-2xl font-bold mb-6">See More of Our Work</h3>
           <div className="flex justify-center gap-6">
             <a href="https://www.facebook.com/share/1B92uC2pnV/?mibextid=wwXlfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
