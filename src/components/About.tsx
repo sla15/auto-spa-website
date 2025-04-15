@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button";
 import { Users, Trophy, Truck, CalendarClock } from "lucide-react";
 import BeforeAfterSlider from "./BeforeAfterSlider";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -81,10 +80,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-            
-            <Button className="bg-autospa-yellow text-autospa-black hover:bg-white hover:text-autospa-black mt-4">
-              Learn More About Us
-            </Button>
           </div>
         </div>
       </div>
