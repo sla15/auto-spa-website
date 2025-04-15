@@ -1,10 +1,7 @@
-
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useEffect, useRef } from "react";
-
 const Contact = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       // Check for messages from the parent window (our application)
@@ -28,17 +25,14 @@ const Contact = () => {
 
     // Listen for messages from our app
     window.addEventListener('message', handleMessage);
-    
     return () => {
       window.removeEventListener('message', handleMessage);
     };
   }, []);
-
-  return (
-    <section id="contact" className="py-20">
+  return <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-4">Contact <span className="text-autospa-yellow">Us</span></h2>
+          <h2 className="text-4xl font-bold mb-4 text-autospa-yellow">Contact <span className="text-autospa-yellow">Us</span></h2>
           <p className="text-xl text-autospa-gray max-w-2xl mx-auto">
             Have questions or ready to book an appointment? Reach out to us!
           </p>
@@ -46,26 +40,21 @@ const Contact = () => {
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Embedded JotForm with better responsive handling */}
-          <div className="animate-slide-in-right w-full h-[600px] md:h-[800px]" style={{ animationDelay: "0.2s" }}>
-            <iframe 
-              ref={iframeRef}
-              id="JotFormIFrame-251028955816059" 
-              title="Ultimate Auto Spa Booking" 
-              allow="geolocation; microphone; camera; fullscreen" 
-              src="https://form.jotform.com/251028955816059"
-              style={{
-                minWidth: '100%',
-                maxWidth: '100%',
-                height: '100%',
-                border: 'none'
-              }}
-            />
+          <div className="animate-slide-in-right w-full h-[600px] md:h-[800px]" style={{
+          animationDelay: "0.2s"
+        }}>
+            <iframe ref={iframeRef} id="JotFormIFrame-251028955816059" title="Ultimate Auto Spa Booking" allow="geolocation; microphone; camera; fullscreen" src="https://form.jotform.com/251028955816059" style={{
+            minWidth: '100%',
+            maxWidth: '100%',
+            height: '100%',
+            border: 'none'
+          }} />
           </div>
           
           {/* Get In Touch */}
           <div className="animate-slide-in-right" style={{
-            animationDelay: "0.4s"
-          }}>
+          animationDelay: "0.4s"
+        }}>
             <div className="bg-autospa-black text-white p-8 rounded-lg shadow-lg h-full">
               <h3 className="text-2xl font-bold mb-6 text-autospa-yellow">Get In Touch</h3>
               
@@ -127,7 +116,7 @@ const Contact = () => {
                   <a href="https://www.tiktok.com/@theultimateautospa?_t=ZM-8vXZzU9vcBj&_r=1" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-autospa-yellow hover:text-autospa-black p-3 rounded-full transition-colors">
                     {/* Custom TikTok icon */}
                     <svg className="h-5 w-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                      <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
+                      <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
                     </svg>
                   </a>
                 </div>
@@ -136,8 +125,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
