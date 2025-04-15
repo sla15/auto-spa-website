@@ -30,9 +30,9 @@ const Index = () => {
     // Add event listeners to pricing package cards
     const setupPackageButtons = () => {
       const packages = [
-        { id: "premium-package", service: "Premium Package" },
-        { id: "full-spa-package", service: "Full Spa Package" },
-        { id: "ultimate-package", service: "Ultimate Package" }
+        { id: "premium-package", service: "Premium" },
+        { id: "full-spa-package", service: "Full Spa" },
+        { id: "ultimate-package", service: "The Ultimate" }
       ];
 
       packages.forEach(pkg => {
