@@ -2,7 +2,6 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, PhoneCall } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
 const servicePackages = [
@@ -71,8 +70,6 @@ const servicePackages = [
 ];
 
 const Services = () => {
-  const navigate = useNavigate();
-
   // Mouse position state for card hover effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -152,7 +149,8 @@ const Services = () => {
                   const card = cardsRef.current[index];
                   if (card) {
                     const { x, y } = calculateRotation(card);
-                    card.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+                    const transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+                    card.style.transform = transform;
                   }
                 }}
               >
